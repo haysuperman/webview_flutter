@@ -72,7 +72,14 @@
     _webView = [[WKWebView alloc] initWithFrame:frame configuration:configuration];
     [_webView.scrollView setShowsVerticalScrollIndicator:NO];
     [_webView.scrollView setShowsHorizontalScrollIndicator:NO];
-    _webView.insetsLayoutMarginsFromSafeArea = NO;
+    if (@available(iOS 11.0, *)) {
+      _webView.insetsLayoutMarginsFromSafeArea = NO;
+    } else {
+      // Fallback on earlier versions
+    }
+    if(@available(iOS 11.0, *)) {
+        _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     NSLog(@"xxxxxxx wkwebview");
     _navigationDelegate = [[FLTWKNavigationDelegate alloc] initWithChannel:_channel];
     _webView.navigationDelegate = _navigationDelegate;
