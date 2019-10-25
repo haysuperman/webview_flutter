@@ -70,6 +70,10 @@
                         inConfiguration:configuration];
 
     _webView = [[WKWebView alloc] initWithFrame:frame configuration:configuration];
+    [_webView.scrollView setShowsVerticalScrollIndicator:NO];
+    [_webView.scrollView setShowsHorizontalScrollIndicator:NO];
+    _webView.insetsLayoutMarginsFromSafeArea = NO;
+    NSLog(@"xxxxxxx wkwebview");
     _navigationDelegate = [[FLTWKNavigationDelegate alloc] initWithChannel:_channel];
     _webView.navigationDelegate = _navigationDelegate;
     __weak __typeof__(self) weakSelf = self;
